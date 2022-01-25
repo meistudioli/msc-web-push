@@ -88,8 +88,8 @@ import { MscWebPush } from 'https://your-domain/wc-msc-web-push.js';
 // use DOM api
 const nodeA = document.createElement('msc-web-push');
 document.body.appendChild(nodeA);
-nodeA.service-worker-path = 'your-service-worker-path.js';
-nodeA.public-key = 'your-public-key';
+nodeA['service-worker-path'] = 'your-service-worker-path.js';
+nodeA['public-key'] = 'your-public-key';
 nodeA.appendChild(
   document.querySelector(".your-clickable-node")
 );
@@ -97,16 +97,16 @@ nodeA.appendChild(
 // new instance with Class
 const nodeB = new MscWebPush();
 document.body.appendChild(nodeB);
-nodeB.service-worker-path = 'your-service-worker-path.js';
-nodeB.public-key = 'your-public-key';
+nodeB['service-worker-path'] = 'your-service-worker-path.js';
+nodeB['public-key']= 'your-public-key';
 nodeB.appendChild(
   document.querySelector(".your-conclickabletent-node")
 );
   
 // new instance with Class & default config
 const config = {
-  service-worker-path="your-service-worker-path.js"
-  public-key="your-public-key"
+  "service-worker-path": "your-service-worker-path.js",
+  "public-key": "your-public-key"
 };
 const nodeC = new MscWebPush(config);
 document.body.appendChild(nodeC);
