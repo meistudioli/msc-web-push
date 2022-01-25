@@ -1,6 +1,6 @@
 # msc-web-push
 
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/msc-web-push)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/msc-web-push) [![DeepScan grade](https://deepscan.io/api/teams/16372/projects/19990/branches/529884/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=16372&pid=19990&bid=529884)
 
 Push messaging provides a simple and effective way to re-engage with your users. Once users subscribed, vendor could push messaging for them. &lt;msc-web-push /> provides a simple usage for developers. It will handle subscription process and UI mutations.
 
