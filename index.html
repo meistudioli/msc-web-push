@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Web Component: &lt;msc-web-push /&gt; - web components based web push subscription feature</title>
+<meta name="description" content="Push messaging provides a simple and effective way to re-engage with your users. Once users subscribed, vendor could push messaging for them. <msc-web-push /> provides a simple usage for developers. It will handle subscription process and UI mutations." />
+<script type="module" src="mjs/wc-msc-web-push.js"></script>
+<style>
+/*** The new CSS Reset - version 1.4.2 (last updated 30.11.2021) ***/
+/* All rights reserved from https://elad2412.github.io/the-new-css-reset/ */
+*:where(:not(iframe,canvas,img,svg,video):not(svg *,symbol *)){all:unset;display:revert;}
+*,*::before,*::after{box-sizing:border-box;}
+ol,ul,menu{list-style:none;}
+img{max-width:100%;}
+table{border-collapse:collapse;}
+textarea{white-space:revert;}
+:where([contenteditable]){-moz-user-modify:read-write;-webkit-user-modify:read-write;overflow-wrap:break-word;-webkit-line-break:after-white-space;}
+
+/* page */
+html,body{font-family:system-ui,sans-serif;text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-size:16px;}
+#hd,#ft{display:none;}
+
+body{position:relative;inline-size:100vw;block-size:100vh;}
+
+.demo{position:absolute;inset-inline-start:50%;inset-block-start:50%;inline-size:calc(100% - 24px);block-size:auto;max-inline-size:600px;background:#dce2f0;border-radius:.5em;padding:2em;box-sizing:border-box;border-radius:1em;transform:translate(-50%,-50%);}
+
+/* msc-web-push */
+msc-web-push:not(:defined){visibility:hidden;}
+.web-push-trigger {
+  --mask-normal: path('M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z');
+  --mask-off: path('M20 18.69L7.84 6.14 5.27 3.49 4 4.76l2.8 2.8v.01c-.52.99-.8 2.16-.8 3.42v5l-2 2v1h13.73l2 2L21 19.72l-1-1.03zM12 22c1.11 0 2-.89 2-2h-4c0 1.11.89 2 2 2zm6-7.32V11c0-3.08-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68c-.15.03-.29.08-.42.12-.1.03-.2.07-.3.11h-.01c-.01 0-.01 0-.02.01-.23.09-.46.2-.68.31 0 0-.01 0-.01.01L18 14.68z');
+
+  --color-normal: #4a8af1;
+  --color-hover: #1b71fa;
+
+  --color-subscribed-normal: #b60845;
+  --color-subscribed-hover: #db004d;
+
+  --mask: var(--mask-normal);
+  --color: var(--color-normal);
+}
+.web-push-trigger{inline-size:fit-content;inline-size:-moz-fit-content;block-size:2.667em;font-size:1.125em;color:var(--color);padding:0 1em;display:flex;box-sizing:border-box;border-radius:2.667em;box-shadow:inset 0 0 0 2px;align-items:center;gap:8px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color 350ms ease;}
+.web-push-trigger::before{content:'';inline-size:24px;block-size:24px;display:block;background-color:currentColor;clip-path:var(--mask);}
+.web-push-trigger::after{content:'Enable Push Messaging';}
+
+
+.demo msc-web-push{margin:32px auto;}
+msc-web-push[subscribed] .web-push-trigger{--mask:var(--mask-off);--color:var(--color-subscribed-normal);}
+msc-web-push[subscribed] .web-push-trigger::after{content:'Disable Push Messaging';}
+
+@media (hover: hover) {
+  .web-push-trigger:hover {
+    --color: var(--color-hover);
+    font-weight: 400;
+  }
+
+  msc-web-push[subscribed] .web-push-trigger:hover {
+    --color: var(--color-subscribed-hover);
+  }
+}
+
+msc-web-push{inline-size:fit-content;inline-size:-moz-fit-content;display:block;margin:2em auto;}
+</style>
+</head>
+
+<body>
+
+<div class="demo">
+  <msc-web-push>
+    <script type="application/json">
+      {
+        "service-worker-path": "sw-msc-web-push.js",
+        "public-key": "BIuHoKvfOybTnWFVAYsuIu6mysHPJmrnEIj-ZPjlicqldrMTkVYts0K2IWrhTHMwU-sThBKFAqVEtoUMasoEq_s"
+      }
+    </script>
+    <a href="#" class="web-push-trigger" slot="msc-web-push-trigger"></a>
+  </msc-web-push>
+</div>
+
+<script>
+customElements.whenDefined('msc-web-push').then(
+  () => {
+    const webPush = document.querySelector('msc-web-push');
+
+    webPush.addEventListener('msc-web-push-subscription-change',
+      (evt) => {
+        const { baseEvent, subscription } = evt.detail;
+        console.log('subscription:', subscription);
+      }
+    );
+  }
+);
+</script>
+
+</body>
+
+</html>
