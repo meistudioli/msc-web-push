@@ -1,6 +1,6 @@
 {
   "name": "msc-web-push",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Push messaging provides a simple and effective way to re-engage with your users. Once users subscribed, vendor could push messaging for them. <msc-web-push /> provides a simple usage for developers. It will handle subscription process and UI mutations.",
   "main": "index.html",
   "scripts": {
@@ -11,7 +11,11 @@
     "url": "git+https://github.com/meistudioli/msc-web-push.git"
   },
   "keywords": [
-    "web"
+    "web",
+    "front-end",
+    "web component",
+    "web push",
+    "notification"
   ],
   "author": "Paul Li",
   "license": "MIT",
